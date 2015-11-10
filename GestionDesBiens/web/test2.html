@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title> - jsFiddle demo by richf</title>
+  
+  
+  <script type='text/javascript' src='http://code.jquery.com/jquery-2.1.0.js'></script>
+  
+  
+  
+  
+
+  
+    
+      <script type='text/javascript' src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    
+  
+  <style type='text/css'>
+    
+  </style>
+  
+
+
+
+<script type='text/javascript'>//<![CDATA[
+$(window).load(function(){
+Parse.initialize("nvlOlG2xjqcTOptsoQtEV3GceVjoSItfbcYB9DXn", "ueepExpmIvMXbIH4S0cVmhONaitd62SaERX3HiqN");
+    
+    var GameScore = Parse.Object.extend("Location");
+    var query = new Parse.Query(GameScore);
+    query.find({
+    success: function(results) {
+    //alert("Successfully retrieved " + results.length + " scores.");
+    // Do something with the returned Parse.Object values
+    for (var i = 0; i < results.length; i++) { 
+      var object = results[i];
+      (function($) {
+   $('#results-table').append('<tr><td>' + object.get('lat') + '</td><td>' + object.get('long') + '</td></tr>');
+})(jQuery);
+      
+      //alert(object.id + ' - ' + object.get('playerName'));
+    }
+    },
+    error: function(error) {
+    alert("Error: " + error.code + " " + error.message);
+    }
+    });
+});//]]> 
+
+</script>
+
+</head>
+<body>
+  <table id="results-table">
+    <tr>
+      <th>User Name</th>
+      <th>Score</th>
+    </tr>
+  </table>
+  
+</body>
+
+</html>
+
